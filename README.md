@@ -1,1 +1,1 @@
-Hello Git
+The Fire Weather Index (FWI) Project focuses on assessing and predicting the risk of forest fires based on weather conditions. It uses meteorological parameters such as temperature, humidity, wind speed, and rainfall to calculate fire danger levels.
