@@ -1,27 +1,103 @@
-<html>
-    <body>
-        <div class="login">
-            <h1>FWI Prediction</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-            <!-- Main Input For Recieving Query to Our ML -->
-             <form action="{{ url_for('predict_datapoint')}}" method="post">
-                <input type="text" name="Temperature" placeholder="temperature" required="required" /><br>
-                    <input type="text" name="RH" placeholder="RH" required="required" /><br>
-                    <input type="text" name="Ws" placeholder="Ws" required="required" /><br>
-                    <input type="text" name="Rain" placeholder="Rain" required="required" /><br>
-                    <input type="text" name="FFMC" placeholder="FFMC" required="required" /><br>
-                    <input type="text" name="DMC" placeholder="DMC" required="required" /><br>
-                    <input type="text" name="ISI" placeholder="ISI" required="required" /><br>
-                    <input type="text" name="Classes" placeholder="Classes" required="required" /><br>
-                    <input type="text" name="Region" placeholder="Region" required="required" /><br>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FWI Prediction</title>
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
 
+<body class="home-body">
 
-                    <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-             </form>
-        <h2>
-            The FWI prediction is {{results}}
-        </h2>
+    <div class="container">
+
+        <div class="card">
+
+            <h1>🔥 Fire Weather Index Prediction</h1>
+
+            <p class="subtitle">
+                Enter the weather parameters below to predict the Fire Weather Index.
+            </p>
+
+            <form action="{{ url_for('predict_datapoint') }}" method="POST">
+
+                <div class="form-grid">
+
+                    <div class="input-box">
+                        <label>🌡 Temperature (°C)</label>
+                        <input type="number" step="any" name="Temperature" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>💧 Relative Humidity (%)</label>
+                        <input type="number" step="any" name="RH" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>🌬 Wind Speed</label>
+                        <input type="number" step="any" name="Ws" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>🌧 Rain (mm)</label>
+                        <input type="number" step="any" name="Rain" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>🔥 FFMC</label>
+                        <input type="number" step="any" name="FFMC" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>🌲 DMC</label>
+                        <input type="number" step="any" name="DMC" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>⚡ ISI</label>
+                        <input type="number" step="any" name="ISI" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>📊 Classes (0/1)</label>
+                        <input type="number" name="Classes" required>
+                    </div>
+
+                    <div class="input-box full-width">
+                        <label>📍 Region (0/1)</label>
+                        <input type="number" name="Region" required>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="predict-btn">
+                    Predict Fire Weather Index
+                </button>
+
+            </form>
+
+            {% if results %}
+
+            <div class="result-card">
+
+                <h2>🔥 Prediction Result</h2>
+
+                <div class="prediction-value">
+
+                    {{ results }}
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
         </div>
-    </body>
+
+    </div>
+
+</body>
+
 </html>
